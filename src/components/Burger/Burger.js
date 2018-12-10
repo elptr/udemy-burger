@@ -4,23 +4,29 @@ import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 
 const burger = (props) => {
-    const transformedIngredients = Object.keys(props.ingredients)
+    let transformedIngredients = Object.keys(props.ingredients)
         .map( igKey => {
             return [...Array(props.ingredients[igKey])]
                 .map( (_, i) => {
-                    console.log(" igKey, _ , i =>  ", igKey,  _, i );
+                    //console.log(" igKey, _ , i =>  ", igKey,  _, i );
                     return <BurgerIngredient  key={igKey + i} type={igKey}/>;
-                })
-        });
+                });
+        }).reduce( (accumulator, currentVal) => {
+            //console.log(' accumulator, currentVal, accumulator.concat(currentVal => ', accumulator, currentVal, accumulator.concat(currentVal));
+            return accumulator.concat(currentVal)
+            }, []);
+
+
+    if(transformedIngredients.length === 0){
+        transformedIngredients = <p>Please start adding ingredients!</p>
+    }
 
 
 
-    console.log(" props.ingredients = ", props.ingredients);
-    console.log(" Object.keys(props.ingredients) = ", Object.keys(props.ingredients));
-    console.log(" Object.keys(props.ingredients).map( igKey => {return [...Array(props.ingredients[igKey])]} ", Object.keys(props.ingredients).map( igKey => {return [...Array(props.ingredients[igKey])]}));
-    console.log(" ", );
-    console.log(" ", );
-    console.log(" ", );
+    // console.log(" props.ingredients = ", props.ingredients);
+    // console.log(" Object.keys(props.ingredients) = ", Object.keys(props.ingredients));
+    // console.log(" Object.keys(props.ingredients).map( igKey => {return [...Array(props.ingredients[igKey])]} ", Object.keys(props.ingredients).map( igKey => {return [...Array(props.ingredients[igKey])]}));
+    // console.log(" transformedIngredients", transformedIngredients);
 
     return (
         <div className={classes.Burger}>
