@@ -12,7 +12,6 @@ class App extends Component {
     return (
 
         <Layout>
-            <p>Text</p>
             <BurgerBuilder/>
         </Layout>
 
