@@ -22,12 +22,6 @@ const burger = (props) => {
     }
 
 
-
-    // console.log(" props.ingredients = ", props.ingredients);
-    // console.log(" Object.keys(props.ingredients) = ", Object.keys(props.ingredients));
-    // console.log(" Object.keys(props.ingredients).map( igKey => {return [...Array(props.ingredients[igKey])]} ", Object.keys(props.ingredients).map( igKey => {return [...Array(props.ingredients[igKey])]}));
-    // console.log(" transformedIngredients", transformedIngredients);
-
     return (
         <div className={classes.Burger}>
             <BurgerIngredient  type={"bread-top"}/>
