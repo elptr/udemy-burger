@@ -111,7 +111,7 @@ class BurgerBuilder extends Component{
             deliveryMethod:'fastest'
         }
 
-        axios.post('/orders', order) //delete .json to check withErrorHandler
+        axios.post('/orders.json', order) //delete .json to check withErrorHandler
             .then(response =>{
                 this.setState({loading:false, purchasing:false});
                 // console.log(response);
