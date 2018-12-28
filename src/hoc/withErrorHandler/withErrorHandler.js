@@ -20,8 +20,9 @@ const withErrorHandler = (WrappedComponent, axios) => {
         }
 
         componentWillUnmount () {
-            console.log("componentWillUnmount ", this.reqInterceptor, this.resInterceptor);
+            // console.log("componentWillUnmount ", this.reqInterceptor, this.resInterceptor);
             //return componentWillUnmount, 0, 0 -> 0, 0 ids that axios kept for request and response interceptors
+            //after burger builder will be unmount in app.js component
             axios.interceptors.request.eject(this.reqInterceptor);
             axios.interceptors.response.eject(this.resInterceptor);
         }
