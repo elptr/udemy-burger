@@ -25,7 +25,7 @@ class OrderSummery extends Component {
                 </ul>
                 <p><strong>Total Price: {this.props.price}</strong></p>
                 <p>Continue to Checkout?</p>
-                <Button btnType='Danger' clicked={this.props.purchaseCanseled}>CANSEL</Button>
+                <Button btnType='Danger' clicked={this.props.purchaseCanseled}>CANCEL</Button>
                 <Button btnType='Success' clicked={this.props.purchaseContinued}>CONTINUE</Button>
             </Aux>
         )
