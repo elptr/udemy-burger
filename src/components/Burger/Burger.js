@@ -6,16 +6,13 @@ import { withRouter } from 'react-router-dom';
 
 
 const burger = (props) => {
-    console.log(props);
     let transformedIngredients = Object.keys(props.ingredients)
         .map( igKey => {
             return [...Array(props.ingredients[igKey])]
                 .map( (_, i) => {
-                    //console.log(" igKey, _ , i =>  ", igKey,  _, i );
                     return <BurgerIngredient  key={igKey + i} type={igKey}/>;
                 });
         }).reduce( (accumulator, currentVal) => {
-            //console.log(' accumulator, currentVal, accumulator.concat(currentVal => ', accumulator, currentVal, accumulator.concat(currentVal));
             return accumulator.concat(currentVal)
             }, []);
 
