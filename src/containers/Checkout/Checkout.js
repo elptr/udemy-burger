@@ -7,22 +7,26 @@ import { Route } from 'react-router-dom';
 
 class Checkout extends Component{
     state = {
-        ingredients:{
-            salad: 1,
-            meet: 1,
-            cheese: 1
-        }
+        ingredients:null,
+        totalPrice:0
     }
-    componentDidMount() {
+    componentWillMount() {
         const query = new URLSearchParams(this.props.location.search);
         const ingredients = {};
-
+        let price = 0;
         for (let param of query.entries()){
             // ['salad', '1']
-            ingredients[param[0]] = +param[1];
+
+            if(param[0] === 'price'){
+                price = param[1];
+            }else{
+                ingredients[param[0]] = +param[1];
+            }
+
+
         }
         //console.log(ingredients); //{bacon: 1, cheese: 1, meat: 1, salad: 1}
-        this.setState({ingredients: ingredients})
+        this.setState({ ingredients: ingredients, totalPrice: price})
     }
     onCheckoutCanceled = () => {
         this.props.history.goBack();
@@ -34,7 +38,6 @@ class Checkout extends Component{
 
 
     render() {
-        console.log("this.props.match.path >>>> ", this.props.match.path + '/contact-data' );
         return (
             <div>
                 <CheckoutSummary
@@ -44,7 +47,14 @@ class Checkout extends Component{
                 />
                 <Route
                     path={ this.props.match.path + '/contact-data' }
-                    component={ContactData}
+                    render={ (props) => (<ContactData
+                        ingredients={this.state.ingredients}
+                        price={this.state.totalPrice}
+                        {...props}
+                        //one method to have history object in ContactData - pass props
+                        // another - wrap ContactData component
+                        // withRouter helper method
+                    />)}
                 />
             </div>
         );
