@@ -14,13 +14,6 @@ import axios from '../../axios-orders';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';
 
-const INGREDIENT_PRICES = {
-    salad:0.6,
-    bacon:0.7,
-    cheese:0.5,
-    meat:1.3
-};
-
 
 class BurgerBuilder extends Component{
     state = {
@@ -52,48 +45,6 @@ class BurgerBuilder extends Component{
 
     }
 
-    addIngredientHandler = (type) => {
-        const oldCount = this.state.ingredients[type];
-        const updatedCount = oldCount + 1;
-        const updatedIngredients = {...this.state.ingredients};
-        updatedIngredients[type] = updatedCount;
-
-
-        const priceAddition = INGREDIENT_PRICES[type];
-        const oldPrice = this.state.totalPrice;
-        const newPrice = oldPrice + priceAddition;
-
-
-        this.setState( function (prevState, props) {
-            return {
-                totalPrice: newPrice,
-                ingredients: updatedIngredients
-            }
-        });
-        this.updatePurchaseState(updatedIngredients);
-    }
-
-    removeIngredientHandler = (type) => {
-        const oldCount = this.state.ingredients[type];
-        if(oldCount <= 0){
-            return;
-        }
-        const updatedCount = oldCount - 1;
-        const updatedIngredients = {...this.state.ingredients};
-        updatedIngredients[type] = updatedCount;
-
-
-        const priceAddition = INGREDIENT_PRICES[type];
-        const oldPrice = this.state.totalPrice;
-        const newPrice = oldPrice - priceAddition;
-
-        this.setState({
-            totalPrice: newPrice,
-            ingredients: updatedIngredients
-        });
-
-        this.updatePurchaseState(updatedIngredients);
-    }
 
     purchaseHandler  = () => {
         this.setState({purchasing:true});
@@ -141,7 +92,7 @@ class BurgerBuilder extends Component{
                         ingredients={this.props.ings}
                     />
                     <BuildControls
-                        price={this.state.totalPrice}
+                        price={this.props.price}
                         ingredientAdded={this.props.onIngredientAdded}
                         ingredientRemoved={this.props.onIngredientRemoved}
                         disabled={disabledInfo}
@@ -154,7 +105,7 @@ class BurgerBuilder extends Component{
                 ingredients={this.props.ings}
                 purchaseCanseled={this.purchaseCanselHandler}
                 purchaseContinued={this.purchaseContinueHandler}
-                price={this.state.totalPrice}
+                price={this.props.price}
             />
         }
 
@@ -183,7 +134,8 @@ const mapStateToProps = state => {
     // mapStateToProps holds the function that receive the state automatically
     // and return js object with what slide of state we r going to use in BurgerBuilder
     return {
-        ings: state.ingredients
+        ings: state.ingredients,
+        price: state.totalPrice
     }
 }
 
