@@ -37,13 +37,13 @@ class BurgerBuilder extends Component{
 
     componentDidMount () {
         //remove .json at the end of next line to test what if you can not load ingredients
-        axios.get('https://udemy-burger-d7ae7.firebaseio.com/ingredients.json')
-            .then(response => {
-                this.setState({ingredients: response.data})
-            })
-            .catch(error => {
-                this.setState({error: true});
-            })
+        // axios.get('https://udemy-burger-d7ae7.firebaseio.com/ingredients.json')
+        //     .then(response => {
+        //         this.setState({ingredients: response.data})
+        //     })
+        //     .catch(error => {
+        //         this.setState({error: true});
+        //     })
     }
 
     updatePurchaseState (ingredients)  {
