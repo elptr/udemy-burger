@@ -17,20 +17,12 @@ import * as burgerBuilderActions from '../../store/actions/index';
 
 class BurgerBuilder extends Component{
     state = {
-        purchasing: false,
-        loading: false,
-        error:false
+        purchasing: false
     }
 
     componentDidMount () {
         //remove .json at the end of next line to test what if you can not load ingredients
-        // axios.get('https://udemy-burger-d7ae7.firebaseio.com/ingredients.json')
-        //     .then(response => {
-        //         this.setState({ingredients: response.data})
-        //     })
-        //     .catch(error => {
-        //         this.setState({error: true});
-        //     })
+
     }
 
     updatePurchaseState (ingredients)  {
@@ -93,9 +85,6 @@ class BurgerBuilder extends Component{
         }
 
 
-        if(this.state.loading){ //overwrite orderSummery if needed
-            orderSummery = <Spinner />
-        }
 
         return (
             <Aux>
