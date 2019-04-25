@@ -21,8 +21,7 @@ class BurgerBuilder extends Component{
     }
 
     componentDidMount () {
-        //remove .json at the end of next line to test what if you can not load ingredients
-
+        this.props.onInitIngredients();
     }
 
     updatePurchaseState (ingredients)  {
@@ -57,7 +56,7 @@ class BurgerBuilder extends Component{
 
         let orderSummery = null;
 
-        let burger = this.state.error
+        let burger = this.props.error
             ? <p> Ingredients can't be loaded </p>
             : <Spinner/>
         if(this.props.ings) {
@@ -107,7 +106,8 @@ const mapStateToProps = state => {
     // and return js object with what slide of state we r going to use in BurgerBuilder
     return {
         ings: state.ingredients,
-        price: state.totalPrice
+        price: state.totalPrice,
+        error: state.error
     }
 }
 
@@ -117,6 +117,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onIngredientAdded: (ingName) => dispatch(burgerBuilderActions.addIngredient(ingName)),
         onIngredientRemoved: (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName)),
+        onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients()),
     }
 }
 
