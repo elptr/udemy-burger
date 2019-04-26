@@ -21,8 +21,16 @@ export const purchaseBurgerFail = (error) => {
 
 //purchaseBurgerSuccess, purchaseBurgerFail - synchronous actions
 
-export const purchaseBurgerStart = (orderData) => {
+export const purchaseBurgerStart = () => {
+    return {
+        type:actionTypes.PURCHASE_BURGER_START
+    }
+}
+
+
+export const purchaseBurger = (orderData) => {
     return dispatch => {
+        dispatch(purchaseBurgerStart());
         axios.post('/orders.json', orderData) //delete .json to check withErrorHandler
             .then(response =>{
                 console.log(response.data);

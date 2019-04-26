@@ -6,7 +6,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Input from '../../../components/UI/Input/Input';
 import { connect } from 'react-redux';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
-import * as actions from '../../store/actions/index';
+import * as actions from '../../../store/actions/index';
 
 class ContactData extends Component{
     state = {
@@ -91,8 +91,7 @@ class ContactData extends Component{
                 valid:true
             },
         },
-        formIsValid: false,
-        loading: false
+        formIsValid: false
     }
     orderHandler = (event) => {
         event.preventDefault();
@@ -108,7 +107,7 @@ class ContactData extends Component{
             orderData:formData
         }
 
-        this.props.onOrderBurder(order);
+        this.props.onOrderBurger(order);
 
     }
 
@@ -176,7 +175,7 @@ class ContactData extends Component{
                 <Button disabled={!this.state.formIsValid} btnType='Success'>Order</Button>
             </form>
         );
-        if(this.state.loading){
+        if(this.props.loading){
             form = <Spinner />
         }
         return (
@@ -192,13 +191,14 @@ class ContactData extends Component{
 const mapStateToProps = state => {
     return {
         onOrderBurger: state.ingredients,
-        price: state.totalPrice
+        price: state.totalPrice,
+        loading: state.loading
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onOrderBurder: (orderData) => dispatch(actions.purchaseBurgerStart(orderData))
+        onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData))
 
     }
 }
