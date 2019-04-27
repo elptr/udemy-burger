@@ -39,13 +39,13 @@ class BurgerBuilder extends Component{
     purchaseHandler  = () => {
         this.setState({purchasing:true});
     }
-    purchaseCanselHandler = () => {
+    purchaseCancelHandler = () => {
         this.setState({purchasing:false})
     }
     purchaseContinueHandler = () => {
         this.props.onInitPurchase(); //if it is in Checkout container (componentWillMount)
         //it cause of redirect whenever user click "order" button,
-        //this why it is added in burgerBuilder container
+        //this why it is added in burgerBuilder
         this.props.history.push('/checkout');
     }
 
@@ -80,7 +80,7 @@ class BurgerBuilder extends Component{
             );
             orderSummery =  <OrderSummery
                 ingredients={this.props.ings}
-                purchaseCanseled={this.purchaseCanselHandler}
+                purchaseCanseled={this.purchaseCancelHandler}
                 purchaseContinued={this.purchaseContinueHandler}
                 price={this.props.price}
             />
@@ -92,7 +92,7 @@ class BurgerBuilder extends Component{
             <Aux>
                 <Modal
                     show={this.state.purchasing}
-                    modalClosed={this.purchaseCanselHandler}
+                    modalClosed={this.purchaseCancelHandler}
                 >
                     {orderSummery}
                 </Modal>
