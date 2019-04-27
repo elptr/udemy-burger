@@ -38,6 +38,7 @@ export const initIngredients  = () => {
     return dispatch => {
         axios.get('https://udemy-burger-d7ae7.firebaseio.com/ingredients.json')
             .then(response => {
+                console.log("response.data >>>>>", response.data);
                 dispatch(setIngredients(response.data))
             })
             .catch(error => {

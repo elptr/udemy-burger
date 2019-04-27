@@ -105,9 +105,9 @@ const mapStateToProps = state => {
     // mapStateToProps holds the function that receive the state automatically
     // and return js object with what slide of state we r going to use in BurgerBuilder
     return {
-        ings: state.ingredients,
-        price: state.totalPrice,
-        error: state.error
+        ings: state.burgerBuilder.ingredients,
+        price: state.burgerBuilder.totalPrice,
+        error: state.burgerBuilder.error
     }
 }
 
