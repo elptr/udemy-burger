@@ -43,6 +43,9 @@ class BurgerBuilder extends Component{
         this.setState({purchasing:false})
     }
     purchaseContinueHandler = () => {
+        this.props.onInitPurchase(); //if it is in Checkout container (componentWillMount)
+        //it cause of redirect whenever user click "order" button,
+        //this why it is added in burgerBuilder container
         this.props.history.push('/checkout');
     }
 
@@ -118,6 +121,7 @@ const mapDispatchToProps = dispatch => {
         onIngredientAdded: (ingName) => dispatch(actions.addIngredient(ingName)),
         onIngredientRemoved: (ingName) => dispatch(actions.removeIngredient(ingName)),
         onInitIngredients: () => dispatch(actions.initIngredients()),
+        onInitPurchase: () => dispatch(actions.purchaseInit()),
     }
 }
 

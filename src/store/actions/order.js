@@ -42,3 +42,9 @@ export const purchaseBurger = (orderData) => {
 }
 
 //purchaseBurgerStart asynchronous
+
+export const purchaseInit = () => {
+    return {
+        type:actionTypes.PURCHASE_INIT
+    }
+}
